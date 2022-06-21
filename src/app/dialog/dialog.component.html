@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Add new person</h1>
+<div mat-dialog-content>
+    <form [formGroup]="personForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="personName" matInput placeholder="Full name">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Position</mat-label>
+            <mat-select formControlName="personPosition" placeholder="Positions">
+                <mat-option value="SEO">SEO</mat-option>
+                <mat-option value="Front">Frontend</mat-option>
+                <mat-option value="Back">Backend</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>DoB</mat-label>
+            <input formControlName="personDoB" matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Department №</mat-label>
+            <input formControlName="personDepartment" matInput type="number" min="4" max="10" placeholder="5-10">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Salary</mat-label>
+            <input formControlName="personSalary" matInput onkeyup="this.value = this.value.replace(/[^\d]/g,'');" placeholder="$$$">
+          </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'"> 
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 10px" mat-raised-button color="primary" (click)="addPerson()">{{actionBtn}}</button>
+</div>
